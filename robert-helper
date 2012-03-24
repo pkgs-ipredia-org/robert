@@ -1,0 +1,12 @@
+#!/bin/bash
+# 
+# Robert Helper for adding torrents
+
+echo "-- Robert helper --"
+echo "-- Arguments: $@"
+
+# If we have arguments copy file to roberts torrent folder
+[ "$#" -eq 0 ] || cp "$@" ~/Robert/torrents/
+
+# Run only one Robert
+(pidof Robert || Robert "$@" &)
