@@ -1,7 +1,7 @@
 Name:		robert
 # Version from source package name
 Version:	0.0.32
-Release:	1.beta2%{?dist}
+Release:	2.beta2%{?dist}
 Summary:	Robert I2P BitTorrent Client
 
 Group:		Applications/Internet
@@ -11,6 +11,7 @@ URL:		http://bob.i2p/Robert.html
 # Stable source URL: http://sponge.i2p/files/Robert-Stable.torrent
 # Beta source URL: http://sponge.i2p/files/robert-beta.tar.gz.torrent
 Source0:	Robert-%{version}-BETA-2.tar.gz
+Source1: 	%{name}.desktop
 BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 BuildArch: 	noarch
 
@@ -51,6 +52,9 @@ INSTALL=$RPM_BUILD_ROOT/usr PREFIX=$RPM_BUILD_ROOT/usr ./install
 # Remove the prefix from installed files
 find $RPM_BUILD_ROOT -type f | xargs sed -i "s|$RPM_BUILD_ROOT||g"
 
+# Install desktop file
+desktop-file-install --dir=%{buildroot}%{_datadir}/applications/ %{SOURCE1}
+
 
 %post
 # Enable BOB
@@ -59,9 +63,16 @@ sed -i "s|clientApp.5.startOnLoad=false|clientApp.5.startOnLoad=true|g" /usr/loc
 # In i2p installation (needed for fresh installations)
 sed -i "s|clientApp.5.startOnLoad=false|clientApp.5.startOnLoad=true|g" %{_bindir}/i2p/clients.config
 
+# Rebuild desktop database
+update-desktop-database > /dev/null 2>&1 || :
 
 # Condrestart i2p and return 0
 /sbin/service i2p condrestart >/dev/null 2>&1 || :
+
+
+%postun 
+# Update desktop database
+update-desktop-database > /dev/null 2>&1 || :
 
 
 %clean
@@ -78,7 +89,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/btmakemetafile
 %{_bindir}/btshowmetainfo
 %{_datadir}/Robert
+%{_datadir}/applications/%{name}.desktop
+
 
 %changelog
+* Sat Mar 24 2012 Mattias Ohlsson <mattias.ohlsson@inprose.com> - 0.0.32-2
+- Add desktop file
+
 * Sat Mar 24 2012 Mattias Ohlsson <mattias.ohlsson@inprose.com> - 0.0.32-1
 - Initial package (Robert 0.0.32-beta2)
