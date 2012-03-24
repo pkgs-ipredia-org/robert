@@ -118,4 +118,4 @@ Icon=robert
 Terminal=false
 Type=Application
 MimeType=application/x-bittorrent;x-scheme-handler/magnet;
-Categories=Network;FileTransfer;P2P;I2P;
+Categories=Network;FileTransfer;P2P;X-I2P;
