@@ -1,32 +1,67 @@
-Name:		
-Version:	
-Release:	1%{?dist}
-Summary:	
+Name:		robert
+# Version from source package name
+Version:	0.0.32
+Release:	1.beta2%{?dist}
+Summary:	Robert I2P BitTorrent Client
 
-Group:		
-License:	
-URL:		
-Source0:	
+Group:		Applications/Internet
+# License from LICENSES.TXT (and LeoXV.LICENSE.TXT) in src
+License:	MIT and read source
+URL:		http://bob.i2p/Robert.html
+# Stable source URL: http://sponge.i2p/files/Robert-Stable.torrent
+# Beta source URL: http://sponge.i2p/files/robert-beta.tar.gz.torrent
+Source0:	Robert-%{version}-BETA-2.tar.gz
 BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
+BuildArch: 	noarch
 
-BuildRequires:	
-Requires:	
+# Installation script checks for this
+BuildRequires:	python wxPython	
 
+# Requires from src/README.txt
+# FIXTHIS: Add python-blist to this list.
+#          src/README.txt
+#          blist: This will boost performance in some areas.
+Requires:	python wxPython i2p i2p-plugin-seedless
+
+# Description from http://en.wikipedia.org/wiki/Robert_(P2P_Software)
 %description
+Robert is a file sharing application that relies upon the security and encryption of peers and tunnels inside of I2P.
 
 
 %prep
-%setup -q
+# We must use -qn to tell the source directory name
+%setup -qn Robert-src/src
 
 
 %build
-%configure
-make %{?_smp_mflags}
+# Build is in the install script
 
 
 %install
 rm -rf $RPM_BUILD_ROOT
-make install DESTDIR=$RPM_BUILD_ROOT
+
+# Install in /usr/bin (%{_bindir}) and /usr/share/Robert (%{_datadir}/Robert) 
+# Install script must have the bin dir before install
+install -d $RPM_BUILD_ROOT%{_bindir}
+
+# Install instructions from src/README.txt
+# FIXTHIS: How do we exclude the install prefix from files in /usr/bin?
+INSTALL=$RPM_BUILD_ROOT/usr PREFIX=$RPM_BUILD_ROOT/usr ./install
+
+# Remove the prefix from installed files
+find $RPM_BUILD_ROOT -type f | xargs sed -i "s|$RPM_BUILD_ROOT||g"
+
+
+%post
+# Enable BOB
+# In i2p home
+sed -i "s|clientApp.5.startOnLoad=false|clientApp.5.startOnLoad=true|g" /usr/local/i2p/.i2p/clients.config
+# In i2p installation (needed for fresh installations)
+sed -i "s|clientApp.5.startOnLoad=false|clientApp.5.startOnLoad=true|g" %{_bindir}/i2p/clients.config
+
+
+# Condrestart i2p and return 0
+/sbin/service i2p condrestart >/dev/null 2>&1 || :
 
 
 %clean
@@ -36,8 +71,14 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root,-)
 %doc
-
-
+%{_bindir}/Robert
+%{_bindir}/RobertProfile
+%{_bindir}/Robertcheck
+%{_bindir}/SeaWeed
+%{_bindir}/btmakemetafile
+%{_bindir}/btshowmetainfo
+%{_datadir}/Robert
 
 %changelog
-
+* Sat Mar 24 2012 Mattias Ohlsson <mattias.ohlsson@inprose.com> - 0.0.32-1
+- Initial package (Robert 0.0.32-beta2)
