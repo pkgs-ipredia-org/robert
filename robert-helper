@@ -6,7 +6,7 @@ echo "-- Robert helper --"
 echo "-- Arguments: $@"
 
 # Create the torrent directory (i does not exist before first Robert start)
-mkdir ~/Robert/torrents/
+mkdir -p ~/Robert/torrents/
 
 # If we have arguments copy file to roberts torrent folder
 [ "$#" -eq 0 ] || cp "$@" ~/Robert/torrents/
