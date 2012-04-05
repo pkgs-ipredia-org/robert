@@ -6,10 +6,10 @@ echo "-- Robert helper --"
 echo "-- Arguments: $@"
 
 # Create the torrent directory (i does not exist before first Robert start)
-mkdir -p ~/Robert/torrents/
+mkdir -p ~/.robert/torrents/
 
 # If we have arguments copy file to roberts torrent folder
-[ "$#" -eq 0 ] || cp "$@" ~/Robert/torrents/
+[ "$#" -eq 0 ] || cp "$@" ~/.robert/torrents/
 
 # Run only one Robert
 (pidof Robert || Robert "$@" &)
