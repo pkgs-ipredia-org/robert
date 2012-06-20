@@ -19,6 +19,9 @@ BuildArch: 	noarch
 # Installation script checks for this
 BuildRequires:	python wxPython	
 
+# desktop-file-utils: desktop-file-install
+BuildRequires:	desktop-file-utils
+
 # Requires from src/README.txt
 # FIXTHIS: Add python-blist to this list.
 #          src/README.txt
