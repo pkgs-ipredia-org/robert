@@ -1,7 +1,7 @@
 Name:		robert
 # Version from source package name
-Version:	0.0.32
-Release:	4.beta2%{?dist}
+Version:	0.0.33
+Release:	1%{?dist}
 Summary:	Robert I2P BitTorrent Client
 
 Group:		Applications/Internet
@@ -10,7 +10,7 @@ License:	MIT and read source
 URL:		http://bob.i2p/Robert.html
 # Stable source URL: http://sponge.i2p/files/Robert-Stable.torrent
 # Beta source URL: http://sponge.i2p/files/robert-beta.tar.gz.torrent
-Source0:	Robert-%{version}-BETA-2.tar.gz
+Source0:	Robert-%{version}-STABLE.tar.gz
 Source1: 	%{name}.desktop
 Source2:	%{name}-helper
 BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
@@ -128,6 +128,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Wed Jun 20 2012 Mattias Ohlsson <mattias.ohlsson@inprose.com> - 0.0.33-1
+- Update to 0.0.33
+
 * Thu Apr 5 2012 Mattias Ohlsson <mattias.ohlsson@inprose.com> - 0.0.32-4
 - Change settings
 
