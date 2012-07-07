@@ -1,7 +1,7 @@
 Name:		robert
 # Version from source package name
-Version:	0.0.33
-Release:	1%{?dist}
+Version:	0.0.34
+Release:	1.beta5%{?dist}
 Summary:	Robert I2P BitTorrent Client
 
 Group:		Applications/Internet
@@ -10,9 +10,8 @@ License:	MIT and read source
 URL:		http://bob.i2p/Robert.html
 # Stable source URL: http://sponge.i2p/files/Robert-Stable.torrent
 # Beta source URL: http://sponge.i2p/files/robert-beta.tar.gz.torrent
-Source0:	Robert-%{version}-STABLE.tar.gz
+Source0:	Robert-%{version}-BETA-5.tar.gz
 Source1: 	%{name}.desktop
-Source2:	%{name}-helper
 BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 BuildArch: 	noarch
 
@@ -89,9 +88,6 @@ find $RPM_BUILD_ROOT -type f | xargs sed -i "s|$RPM_BUILD_ROOT||g"
 # Install desktop file
 desktop-file-install --dir=%{buildroot}%{_datadir}/applications/ %{SOURCE1}
 
-# Install robert helper script
-install -D -m 0755 %{SOURCE2} $RPM_BUILD_ROOT%{_bindir}/robert-helper
-
 
 %post
 # Enable BOB
@@ -125,12 +121,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/SeaWeed
 %{_bindir}/btmakemetafile
 %{_bindir}/btshowmetainfo
-%{_bindir}/robert-helper
 %{_datadir}/Robert
 %{_datadir}/applications/%{name}.desktop
 
 
 %changelog
+* Sat Jul 7 2012 Mattias Ohlsson <mattias.ohlsson@inprose.com>
+- Update to 0.0.34-beta5
+
 * Wed Jun 20 2012 Mattias Ohlsson <mattias.ohlsson@inprose.com> - 0.0.33-1
 - Update to 0.0.33
 
