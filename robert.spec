@@ -1,7 +1,7 @@
 Name:		robert
 # Version from source package name
 Version:	0.0.33
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	Robert I2P BitTorrent Client
 
 Group:		Applications/Internet
@@ -131,6 +131,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Wed Jul 11 2012 Mattias Ohlsson <mattias.ohlsson@inprose.com> - 0.0.33-2
+- Remove mime types
+
 * Wed Jun 20 2012 Mattias Ohlsson <mattias.ohlsson@inprose.com> - 0.0.33-1
 - Update to 0.0.33
 
