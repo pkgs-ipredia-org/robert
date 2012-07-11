@@ -117,5 +117,5 @@ Exec=Robert %U
 Icon=/usr/share/Robert/images/webui.bmp
 Terminal=false
 Type=Application
-MimeType=application/x-bittorrent;x-scheme-handler/magnet;x-scheme-handler/maggot;
+MimeType=application/x-bittorrent;x-scheme-handler/maggot;
 Categories=Network;FileTransfer;P2P;X-I2P;
