@@ -116,8 +116,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %doc
 %{_bindir}/Robert
-%{_bindir}/RobertProfile
-%{_bindir}/Robertcheck
 %{_bindir}/SeaWeed
 %{_bindir}/btmakemetafile
 %{_bindir}/btshowmetainfo
