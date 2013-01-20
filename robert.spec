@@ -15,6 +15,8 @@ Source1: 	%{name}.desktop
 BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 BuildArch: 	noarch
 
+Patch0: change-folders-for-iprediaos.patch
+
 # Installation script checks for this
 BuildRequires:	python wxPython	
 
@@ -35,40 +37,11 @@ Robert is a file sharing application that relies upon the security and encryptio
 %prep
 # We must use -qn to tell the source directory name
 %setup -qn Robert-src/src
+%patch0 -p1
 
 
 %build
 # Build is in the install script
-
-# Change download folder, configuration folder and settings
-# Robert does not create parent dirs automatically (we need to create ~/Robert Downloads)
-# 
-# -e 1: change path (base path) to ~/.robert
-# -e 2: change completed_dl_dir to ~/Robert Downloads
-# -e 3: change download_dir to ~/Robert Downloads/Imcoming 
-# -e 4: change resume_data_dir to ~/.robert/robert/resumedata
-# -e 5: change tdir_scan (load unloaded torrents every min) to 60
-sed -i \
-  -e 's|join(path,"Robert")|join(os.path.expanduser("~"),".robert")|g' \
-  -e 's|join(path, "incoming/completed")|join(os.path.expanduser("~"),"Robert Downloads")|g' \
-  -e 's|join(path, "incoming/partial")|join(os.path.expanduser("~"),"Robert Downloads/Incoming")|g' \
-  -e 's|join(path, ".Robert/resumedata")|join(os.path.expanduser("~"),".robert/robert/resumedata")|g' \
-  -e "s|'tdir_scan'     : 120|'tdir_scan'     : 60|g" \
-  btconfig.py
-# Change path in run scripts
-# Upstream bug: typo in mkdir (dual completed_tor_dir)
-# -e 1: change robertfolder (base config dir) to ~/.robert
-# -e 2: change robert (robert run dir) to ~/.robert/robert
-# -e 3: change download_dir to ~/Robert Downloads/Imcoming
-# -e 4: change completed_dl_dir to ~/Robert Downloads
-# -e 5: add fix for spaces (in 'Robert Downloads') to mkdir (add quotation marks)
-sed -i \
-  -e 's|\${HOME}/Robert|\${HOME}/.robert|g' \
-  -e 's|\${robertfolder}/.Robert|\${robertfolder}/robert|g' \
-  -e 's|\${robertfolder}/incoming/partial|"\${HOME}/Robert Downloads/Incoming"|g' \
-  -e 's|\${robertfolder}/incoming/completed|"\${HOME}/Robert Downloads"|g' \
-  -e 's| \${download_dir} | "\${download_dir}" |g' \
-  install
 
 
 %install

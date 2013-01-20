@@ -1,0 +1,56 @@
+From 132d72438e3f1939c2cea3beb3a9472de98635bb Mon Sep 17 00:00:00 2001
+From: Mattias Ohlsson <mattias.ohlsson@inprose.com>
+Date: Sun, 20 Jan 2013 22:11:00 +0100
+Subject: [PATCH] change dirs
+
+---
+ btconfig.py |  8 ++++----
+ install     | 10 +++++-----
+ 2 files changed, 9 insertions(+), 9 deletions(-)
+
+diff --git a/btconfig.py b/btconfig.py
+index e0416dd..ae06553 100644
+--- a/btconfig.py
++++ b/btconfig.py
+@@ -132,11 +132,11 @@ class BTConfig:
+             use_download_dir = False
+         else:
+             path = os.path.expanduser('~')
+-            path = join(path,"Robert")
+-            resume_data_dir = join(path, ".Robert/resumedata")
++            path = join(path,".robert")
++            resume_data_dir = join(path, "robert/resumedata")
+             torrent_dir = join(path, "torrents")
+-            download_dir = join(path, "incoming/partial")
+-            completed_dl_dir  = join(path, "incoming/completed")
++            download_dir = join(os.path.expanduser('~'), "Robert Downloads/Incoming")
++            completed_dl_dir  = join(os.path.expanduser('~'), "Robert Downloads")
+             completed_tor_dir = join(torrent_dir, "completed")
+             use_torrent_dir = True
+             use_download_dir = True
+diff --git a/install b/install
+index 65b2cb9..8950209 100755
+--- a/install
++++ b/install
+@@ -150,13 +150,13 @@ trap 'rm $BOILERPLATE' 0 15
+ $ECHO -n "Creating run scripts..."
+ cat >> $BOILERPLATE << EOF
+ #!/bin/sh
+-robertfolder=\${HOME}/Robert
+-robert=\${robertfolder}/.Robert
++robertfolder=\${HOME}/.robert
++robert=\${robertfolder}/robert
+ torrents=\${robertfolder}/torrents
+-download_dir=\${robertfolder}/incoming/partial
++download_dir="\${HOME}/Robert Downloads/Incoming"
+ completed_dl_dir=\${robertfolder}/incoming/completed
+-completed_tor_dir=\${torrents}/completed
+-mkdir -p \${robertfolder} \${robert} \${download_dir} \${completed_tor_dir} \${completed_tor_dir}
++completed_tor_dir="\${HOME}/Robert Downloads"
++mkdir -p \${robertfolder} \${robert} "\${download_dir}" \${completed_tor_dir} \${completed_tor_dir}
+ cd \${robert}
+ EOF
+ 
+-- 
+1.7.11.7
+
