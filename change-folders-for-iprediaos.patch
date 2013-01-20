@@ -47,7 +47,7 @@ index 65b2cb9..8950209 100755
 -completed_tor_dir=\${torrents}/completed
 -mkdir -p \${robertfolder} \${robert} \${download_dir} \${completed_tor_dir} \${completed_tor_dir}
 +completed_tor_dir="\${HOME}/Robert Downloads"
-+mkdir -p \${robertfolder} \${robert} "\${download_dir}" \${completed_tor_dir} \${completed_tor_dir}
++mkdir -p \${robertfolder} \${robert} "\${download_dir}" "\${completed_tor_dir}" "\${completed_tor_dir}"
  cd \${robert}
  EOF
  
