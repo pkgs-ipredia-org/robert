@@ -1,12 +1,12 @@
-From 132d72438e3f1939c2cea3beb3a9472de98635bb Mon Sep 17 00:00:00 2001
+From c6b269a6e95682b7b5158e1b131609cadb1dcb9b Mon Sep 17 00:00:00 2001
 From: Mattias Ohlsson <mattias.ohlsson@inprose.com>
-Date: Sun, 20 Jan 2013 22:11:00 +0100
-Subject: [PATCH] change dirs
+Date: Sun, 20 Jan 2013 23:39:46 +0100
+Subject: [PATCH] change folders
 
 ---
  btconfig.py |  8 ++++----
- install     | 10 +++++-----
- 2 files changed, 9 insertions(+), 9 deletions(-)
+ install     | 12 ++++++------
+ 2 files changed, 10 insertions(+), 10 deletions(-)
 
 diff --git a/btconfig.py b/btconfig.py
 index e0416dd..ae06553 100644
@@ -29,7 +29,7 @@ index e0416dd..ae06553 100644
              use_torrent_dir = True
              use_download_dir = True
 diff --git a/install b/install
-index 65b2cb9..8950209 100755
+index 65b2cb9..8e3a7cc 100755
 --- a/install
 +++ b/install
 @@ -150,13 +150,13 @@ trap 'rm $BOILERPLATE' 0 15
@@ -42,12 +42,13 @@ index 65b2cb9..8950209 100755
 +robert=\${robertfolder}/robert
  torrents=\${robertfolder}/torrents
 -download_dir=\${robertfolder}/incoming/partial
-+download_dir="\${HOME}/Robert Downloads/Incoming"
- completed_dl_dir=\${robertfolder}/incoming/completed
+-completed_dl_dir=\${robertfolder}/incoming/completed
 -completed_tor_dir=\${torrents}/completed
 -mkdir -p \${robertfolder} \${robert} \${download_dir} \${completed_tor_dir} \${completed_tor_dir}
-+completed_tor_dir="\${HOME}/Robert Downloads"
-+mkdir -p \${robertfolder} \${robert} "\${download_dir}" "\${completed_tor_dir}" "\${completed_tor_dir}"
++download_dir="\${HOME}/Robert Downloads/Incoming"
++completed_dl_dir="\${HOME}/Robert Downloads"
++completed_tor_dir="\${torrents}/completed
++mkdir -p \${robertfolder} \${robert} "\${download_dir}" \${completed_tor_dir} \${completed_tor_dir}
  cd \${robert}
  EOF
  
