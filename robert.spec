@@ -16,6 +16,7 @@ BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 BuildArch: 	noarch
 
 Patch0: change-folders-for-iprediaos.patch
+Patch1: set-lang-to-en-us-before-start.patch
 
 # Installation script checks for this
 BuildRequires:	python wxPython	
@@ -38,6 +39,7 @@ Robert is a file sharing application that relies upon the security and encryptio
 # We must use -qn to tell the source directory name
 %setup -qn Robert-src/src
 %patch0 -p1
+%patch1 -p1
 
 
 %build

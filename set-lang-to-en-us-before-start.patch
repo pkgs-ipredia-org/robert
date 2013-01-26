@@ -1,0 +1,24 @@
+From 97ed1df39d8994c0b7fd5a93bb977a377004bd43 Mon Sep 17 00:00:00 2001
+From: Mattias Ohlsson <mattias.ohlsson@inprose.com>
+Date: Sat, 26 Jan 2013 15:56:26 +0100
+Subject: [PATCH] unset lang
+
+---
+ install | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/install b/install
+index 8e3a7cc..a4c9165 100755
+--- a/install
++++ b/install
+@@ -150,6 +150,7 @@ trap 'rm $BOILERPLATE' 0 15
+ $ECHO -n "Creating run scripts..."
+ cat >> $BOILERPLATE << EOF
+ #!/bin/sh
++LANG=en_US.UTF-8
+ robertfolder=\${HOME}/.robert
+ robert=\${robertfolder}/robert
+ torrents=\${robertfolder}/torrents
+-- 
+1.7.11.7
+
