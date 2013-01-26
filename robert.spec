@@ -1,6 +1,6 @@
 Name:		robert
 # Version from source package name
-Version:	0.0.37
+Version:	0.0.40
 Release:	1%{?dist}
 Summary:	Robert I2P BitTorrent Client
 
@@ -97,6 +97,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sat Jan 26 2013 Mattias Ohlsson <mattias.ohlsson@inprose.com> - 0.0.40-1
+- Update to 0.0.40
+
 * Sun Jan 6 2013 Mattias Ohlsson <mattias.ohlsson@inprose.com> - 0.0.37-1
 - Update to 0.0.37
 
