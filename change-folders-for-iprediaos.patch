@@ -47,7 +47,7 @@ index 65b2cb9..8e3a7cc 100755
 -mkdir -p \${robertfolder} \${robert} \${download_dir} \${completed_tor_dir} \${completed_tor_dir}
 +download_dir="\${HOME}/Robert Downloads/Incoming"
 +completed_dl_dir="\${HOME}/Robert Downloads"
-+completed_tor_dir="\${torrents}/completed
++completed_tor_dir=\${torrents}/completed
 +mkdir -p \${robertfolder} \${robert} "\${download_dir}" \${completed_tor_dir} \${completed_tor_dir}
  cd \${robert}
  EOF
